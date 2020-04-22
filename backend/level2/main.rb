@@ -42,5 +42,5 @@ end
 
 # 3- store the rentals data with price
 File.open('./data/output.json', 'wb') do |file|
-  file.write(JSON.generate(outputs))
+  file.write(JSON.pretty_generate(outputs))
 end
