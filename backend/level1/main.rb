@@ -17,7 +17,7 @@ outputs = { rentals: [] }
 rentals.each do |rental|
   # select the rental car
   car_rented = cars.select { |car| car['id'] == rental['car_id'] }.first
-  # calculate the rental time (+ 1 to add include the first day)
+  # calculate the rental time (+ 1 to include the first day)
   time = (Date.parse(rental['end_date']) - Date.parse(rental['start_date']) + 1)
   # calculate price for rental time
   time_price = time.to_i * car_rented['price_per_day']
