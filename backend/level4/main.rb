@@ -8,18 +8,19 @@ require_relative 'rentals'
 # 1- get the data from the input
 filepath = './data/input.json'
 inputs = JSON.parse(File.read(filepath))
-cars = inputs['cars']
-rentals = inputs['rentals']
+cars = inputs['cars'] # get the cars
+rentals = inputs['rentals'] # get the rentals
 
 # initialize the output
 outputs = { rentals: [] }
 
-# 2- calculate price
+# 2- compute each rental
 rentals.each do |rental|
   # select the rental car
   car_rented = cars.select { |car| car['id'] == rental['car_id'] }.first
+  # create the rental
   computed_rental = Rentals.new(rental, car_rented)
-  p computed_rental
+  # get the id and actions of the rental
   outputs[:rentals] << {
     "id": computed_rental.id,
     "actions": computed_rental.actions

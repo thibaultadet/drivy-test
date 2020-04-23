@@ -28,18 +28,15 @@ class Rentals
 
   def calculate_time_price
     # calculate time price with discount
-    # journey > 10 days
-    if @time > 10
-      return @price_per_day * (1 + 0.9 * 3 + 0.7 * 6 + 0.5 * (@time - 10))
+    sum = 0
+    (1..@time).each do |day|
+      price = @price_per_day
+      price = @price_per_day * 0.9 if day > 1
+      price = @price_per_day * 0.7 if day > 4
+      price = @price_per_day * 0.5 if day > 10
+      sum += price
     end
-    # journey > 4 days
-    if @time > 4 && @time <= 10
-      return @price_per_day * (1 + 0.9 * 3 + 0.7 * (@time - 4))
-    end
-    # journey > 1 days
-    return @price_per_day * (1 + 0.9 * (@time - 1)) if @time > 1 && @time <= 4
-
-    @price_per_day * 1
+    sum
   end
 
   def calculate_distance_price
