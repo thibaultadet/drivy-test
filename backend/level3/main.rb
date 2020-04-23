@@ -27,7 +27,7 @@ end
 
 def calculate_commission(price, time)
   # calculate the global commission and the amount for each partner
-  commission = (price * 0.3).round # 30% commission
+  commission = (price * 30 / 100) # 30% commission
   insurance = commission / 2 # half of the commission for the insurance
   assistance = time * 100 # 1 euro per day for the assistance
   drivy = commission - insurance - assistance # the rest for drivy
