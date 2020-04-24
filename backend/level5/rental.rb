@@ -27,13 +27,14 @@ class Rental
 
   def define_actions
     calculate_final_price
-    calculate_commission
+    dispatch_amounts
     # define action for each actor
     ACTORS.each { |actor| define_action(actor) }
     calculate_options_price
   end
 
   def calculate_options_price
+    # for each rental options
     @options.each do |option|
       # finds the option's parameters
       option_params = OPTIONS[option.to_sym]
@@ -69,7 +70,7 @@ class Rental
     @price = (calculate_time_price + calculate_distance_price).round
   end
 
-  def calculate_commission
+  def dispatch_amounts
     # calculate the global commission and the amount for each partner
     commission = (@price * 30 / 100) # 30% commission
     insurance = commission / 2 # half of the commission for the insurance
@@ -88,6 +89,7 @@ class Rental
     # define action for each actor
     @actions << {
       who: actor,
+      # only the driver is debitted
       type: actor == 'driver' ? 'debit' : 'credit',
       amount: @dispatch[actor.to_sym]
     }

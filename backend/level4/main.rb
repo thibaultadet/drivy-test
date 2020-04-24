@@ -3,7 +3,7 @@
 require 'pry-byebug'
 require 'json'
 require 'date'
-require_relative 'rentals'
+require_relative 'rental'
 
 # 1- get the data from the input
 filepath = './data/input.json'
@@ -22,8 +22,8 @@ rentals.each do |rental|
   computed_rental = Rentals.new(rental, car_rented)
   # get the id and actions of the rental
   outputs[:rentals] << {
-    "id": computed_rental.id,
-    "actions": computed_rental.actions
+    id: computed_rental.id,
+    actions: computed_rental.actions
   }
 end
 

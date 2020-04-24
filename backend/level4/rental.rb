@@ -31,9 +31,9 @@ class Rentals
     sum = 0
     (1..@time).each do |day|
       price = @price_per_day
-      price = @price_per_day * 0.9 if day > 1
-      price = @price_per_day * 0.7 if day > 4
-      price = @price_per_day * 0.5 if day > 10
+      price = @price_per_day * 0.9 if day > 1 # rental time > 1 day = 10% off
+      price = @price_per_day * 0.7 if day > 4 # rental time > 4 day = 30% off
+      price = @price_per_day * 0.5 if day > 10 # rental time > 10 day = 50% off
       sum += price
     end
     sum
